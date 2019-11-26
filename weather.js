@@ -13,6 +13,10 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/html/index.html");
 });
 
+app.post("/", (req, res) => {
+  res.send("Post Works");
+});
+
 app.listen(port, (req, res) => {
   console.log(`Listening on port ${port}...`);
 });
