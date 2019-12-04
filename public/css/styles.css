@@ -5,3 +5,13 @@ body {
 h1 {
   color: peru;
 }
+
+#form-hold {
+  width: 500px;
+  max-width: 600px;
+  margin: 3rem auto;
+}
+
+button {
+  margin: 1.5rem auto 1rem;
+}
