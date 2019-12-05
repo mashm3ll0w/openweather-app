@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 const request = require("request");
 const port = process.env.PORT || 3515;
-const API_KEY = "";	// Enter your API Key Here
+const API_KEY = ""; // Enter your API Key Here
 
 app.use(express.static("public"));
 
@@ -23,11 +23,20 @@ app.post("/", (req, res) => {
 		console.log("error:", error);
 		console.log("response: ", response.statusCode);
 		var data = JSON.parse(body);
-		res.send();
+		if (response.statusCode === 200) {
+			res.write("<h1>Here is your weather data</h1>");
+			res.write("<p>The current condition for " + "<strong>" + city.toUpperCase() + "</strong>" + " is " + "<strong>" + data.weather[0].description + "</strong></p>");
+			res.send();
+		} else {
+			res.sendFile(__dirname + "/public/html/404.html");
+		}
 	});
+});
+
+app.post("/404", (req, res) => {
+	res.redirect("/");
 });
 
 app.listen(port, (req, res) => {
 	console.log(`Listening on port ${port}...`);
 });
-
