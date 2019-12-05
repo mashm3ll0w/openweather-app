@@ -20,8 +20,7 @@ app.post("/", (req, res) => {
 	var fullURL = baseURL + city + "&APPID=" + API_KEY;
 
 	request(fullURL, (error, response, body) => {
-		console.log("error:", error);
-		console.log("response: ", response.statusCode);
+		
 		var data = JSON.parse(body);
 		if (response.statusCode === 200) {
 			res.write("<h1>Here is your weather data</h1>");
